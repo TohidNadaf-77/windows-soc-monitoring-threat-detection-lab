@@ -6,25 +6,28 @@ A hands-on SOC/SIEM lab built with **Windows 11, Sysmon, Splunk Enterprise, and 
 
 The lab simulates an endpoint sending Sysmon telemetry to Splunk. SPL detections are used to identify suspicious PowerShell behavior, executable creation in temporary directories, and potential Windows event-log clearing.
 
-## Architecture
+## Lab Architecture
+
+The following diagram illustrates the end-to-end data flow of the Windows SOC monitoring lab, from endpoint telemetry collection to SIEM monitoring and detection.
+
+![Windows SOC Lab Architecture](docs/lab-architecture.png)
+
+### Data Flow
 
 ```text
 Windows 11 Endpoint
-        │
-        ▼
+        |
+        v
       Sysmon
-        │
-        ▼
+        |
+        v
 Splunk Universal Forwarder
-        │
-        │  TCP 9997
-        ▼
+        | TCP 9997
+        v
 Splunk Enterprise
-        │
-        ├── SPL Queries
-        ├── Detections
-        ├── Scheduled Alerts
-        └── SOC Dashboard
+        |
+        +--> SPL Searches and Detection Queries
+        +--> Scheduled Alerts
 ```
 
 ## Technologies
